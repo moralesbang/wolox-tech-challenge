@@ -1,0 +1,46 @@
+@import "./colors.scss";
+
+.no-underline {
+  text-decoration: none;
+}
+
+.font-semibold {
+  font-weight: 600;
+}
+
+scroll-container {
+  scroll-behavior: smooth;
+}
+
+.navigation {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 4rem 5rem;
+}
+
+.navItem {
+  composes: no-underline;
+  composes: font-semibold;
+  color: $black;
+  padding: 1rem 2rem;
+  letter-spacing: 0.025em;
+  font-size: 1.125rem;
+}
+
+.btnLogin {
+  composes: no-underline;
+  composes: font-semibold;
+  display: inline-block;
+  border-radius: 9999px;
+  border: 2px solid $blue;
+  padding: 0.75rem;
+  color: $blue;
+  text-align: center;
+  font-size: 0.875rem;
+  width: 10rem;
+}
+
+.brandLogo {
+  width: 12rem;
+}
