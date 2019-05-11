@@ -9,7 +9,7 @@ function Navbar() {
         <img src={logo} alt="Wolox's logo" className={styles.brandLogo} />
       </div>
       <div>
-        <a href="/" className={styles.navItem}>
+        <a href="#welcome" className={styles.navItem}>
           Inicio
         </a>
         <a href="#technologies" className={styles.navItem}>

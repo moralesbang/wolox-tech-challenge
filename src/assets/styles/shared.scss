@@ -1,0 +1,63 @@
+@import "colors.scss";
+
+:global .items-centered-between {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+:global .text-black {
+  color: $black;
+}
+
+:global .text-grey-light {
+  color: $grey-dark;
+}
+
+:global .text-blue {
+  color: $blue;
+}
+
+:global .text-pistachio {
+  color: $pistachio;
+}
+
+:global .text-white {
+  color: $white;
+}
+
+:global .content-centered {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+:global .wrapper {
+  max-width: 1200px;
+  margin-left: 5rem;
+  margin-right: 5rem;
+}
+
+.no-underline {
+  text-decoration: none;
+}
+
+.font-semibold {
+  font-weight: 600;
+}
+
+.btn {
+  composes: no-underline;
+  composes: font-semibold;
+  display: inline-block;
+}
+
+.btnFullRounded {
+  composes: btn;
+  border-radius: 9999px;
+  border: 2px solid $blue;
+  padding: 0.75rem;
+  text-align: center;
+  width: 10rem;
+  transition: all 0.1s ease-in;
+}
