@@ -16,8 +16,9 @@ class Navbar extends Component {
   }
 
   linksClass() {
-    let some = this.state.menuExpanded ? "" : " hidden";
-    return styles.links + some;
+    let extra =
+      this.state.menuExpanded || window.innerWidth >= 1024 ? "" : " hidden";
+    return styles.links + extra;
   }
 
   render() {

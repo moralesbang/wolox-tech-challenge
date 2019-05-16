@@ -6,10 +6,7 @@ function Technologies() {
     <scroll-page id="technologies">
       <div className={styles.wrapper}>
         <p className={styles.info}>
-          Estamos buscando <br />
-          para incoporar gente <br />
-          increíble para estas <br />
-          tecnologías
+          Estamos buscando para incoporar gente increíble para estas tecnologías
         </p>
         <div className={styles.list}>
           <span className={styles.angular}>Angular</span>

@@ -11,6 +11,7 @@
 
 .info {
   font-size: 1.875rem;
+  text-align: center;
 }
 
 .list {
@@ -162,5 +163,10 @@
   .list {
     max-width: 40rem;
     margin: 0;
+  }
+
+  .info {
+    text-align: left;
+    max-width: 22rem;
   }
 }
