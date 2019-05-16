@@ -1,0 +1,81 @@
+@import "colors.scss";
+
+.wrapper {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: 4rem;
+}
+
+.item {
+  padding: 1.5rem 2rem;
+  flex: 1 1 auto;
+  height: 16rem;
+}
+
+.twitter {
+  composes: item;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  background: no-repeat center/100% url("../images/developer.jpg");
+  background-color: $black;
+}
+
+.info {
+  composes: item;
+  composes: flex-center from global;
+  background-color: $grey-lighter;
+  text-align: center;
+  font-size: 2rem;
+}
+
+.btnFollowUS {
+  composes: btnFullRounded from "./shared.scss";
+  color: $white;
+  margin-top: 1rem;
+
+  &:hover {
+    background-color: $white;
+    color: $blue;
+  }
+}
+
+.twIcon {
+  width: 2rem;
+  height: 2rem;
+  margin-right: 1rem;
+}
+
+.followersCount {
+  font-size: 2.25rem;
+  font-weight: 600;
+  margin-bottom: 3rem;
+  text-align: center;
+}
+
+.account {
+  color: $white;
+  font-size: 1.25rem;
+}
+
+@media (min-width: $sm) {
+  .info {
+    font-size: 3rem;
+  }
+
+  .twIcon {
+    width: 3rem;
+    height: 3rem;
+  }
+
+  .followersCount {
+    font-size: 3.5rem;
+  }
+
+  .account {
+    font-size: 1.5rem;
+  }
+}

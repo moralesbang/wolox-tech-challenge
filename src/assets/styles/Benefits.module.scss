@@ -1,0 +1,52 @@
+@import "./colors.scss";
+
+.wrapper {
+  composes: section-spacing from "./shared.scss";
+}
+
+.list {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-evenly;
+  width: 100%;
+}
+
+.item {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin: 1rem;
+  width: 8rem;
+
+  img {
+    width: 4rem;
+  }
+
+  p {
+    text-align: center;
+    font-size: 1.125rem;
+    margin-top: 2rem;
+  }
+}
+
+.title {
+  font-size: 1.875rem;
+  font-weight: normal;
+  margin-bottom: 4rem;
+  text-align: center;
+}
+
+@media (min-width: $sm) {
+  .item {
+    margin: 1rem;
+    width: 10rem;
+
+    img {
+      width: 5rem;
+    }
+  }
+
+  .title {
+    font-size: 2rem;
+  }
+}

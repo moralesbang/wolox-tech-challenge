@@ -1,0 +1,58 @@
+@import "colors.scss";
+
+.wrapper {
+  composes: section-spacing from "./shared.scss";
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-evenly;
+}
+
+.title {
+  margin-bottom: 2rem;
+}
+
+.item {
+  display: flex;
+  align-items: center;
+  margin-bottom: 1.5rem;
+}
+
+.description {
+  max-width: 30rem;
+}
+
+.bullet {
+  flex-shrink: 0;
+  width: 1.125rem;
+  height: 1.125rem;
+  border-radius: 50%;
+  background-color: $black; //default bullet color
+  margin-right: 1rem;
+}
+
+.bulletPistachio {
+  composes: bullet;
+  background-color: $pistachio;
+}
+
+.bulletBlue {
+  composes: bullet;
+  background-color: $blue;
+}
+
+@media (min-width: $md) {
+  .description {
+    font-size: 1.125rem;
+  }
+}
+
+@media (min-width: $md) {
+  .title {
+    margin: 0;
+  }
+
+  .item {
+    margin: 2.5rem;
+  }
+}

@@ -1,17 +1,34 @@
 @import "colors.scss";
 
-:global .items-centered-between {
+.section-spacing {
+  padding: 2rem 1.25rem;
+}
+
+.section {
+  composes: section-spacing;
+  padding: 2rem 0;
+}
+
+.flex-center-between {
   display: flex;
+  flex-wrap: wrap;
   align-items: center;
   justify-content: space-between;
 }
 
-:global .text-black {
-  color: $black;
+.btn {
+  font-weight: $semibold;
+  display: inline-block;
+  transition: $default_transition;
 }
 
-:global .text-grey-light {
-  color: $grey-dark;
+.btnFullRounded {
+  composes: btn;
+  border-radius: 9999px;
+  border: 2px solid $blue;
+  padding: 0.5rem;
+  text-align: center;
+  width: 8rem;
 }
 
 :global .text-blue {
@@ -22,20 +39,29 @@
   color: $pistachio;
 }
 
-:global .text-white {
-  color: $white;
+:global .text-black {
+  color: $black;
 }
 
-:global .content-centered {
+:global .flex-center {
   display: flex;
   align-items: center;
   justify-content: center;
 }
 
-:global .wrapper {
-  max-width: 1200px;
-  margin-left: 5rem;
-  margin-right: 5rem;
+:global .text-white {
+  color: $white;
+}
+//***
+
+:global .text-grey-light {
+  color: $grey-dark;
+}
+
+:global .column-centered {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
 }
 
 .no-underline {
@@ -46,18 +72,14 @@
   font-weight: 600;
 }
 
-.btn {
-  composes: no-underline;
-  composes: font-semibold;
-  display: inline-block;
-}
+@media (min-width: $sm) {
+  .section-spacing {
+    padding-left: 5rem;
+    padding-right: 5rem;
+  }
 
-.btnFullRounded {
-  composes: btn;
-  border-radius: 9999px;
-  border: 2px solid $blue;
-  padding: 0.75rem;
-  text-align: center;
-  width: 10rem;
-  transition: all 0.1s ease-in;
+  .btnFullRounded {
+    padding: 0.75rem;
+    width: 10rem;
+  }
 }

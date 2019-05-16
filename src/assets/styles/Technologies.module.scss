@@ -1,0 +1,165 @@
+@import "colors.scss";
+
+.wrapper {
+  composes: section-spacing from "./shared.scss";
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: center;
+}
+
+.info {
+  font-size: 1.875rem;
+}
+
+.list {
+  text-align: center;
+  margin-top: 3rem;
+  span {
+    display: inline-block;
+    margin: 0 1rem;
+  }
+}
+
+.angular {
+  position: relative;
+  left: -2rem;
+}
+
+.react {
+  composes: text-blue from global;
+}
+
+.node {
+  composes: text-grey-light from global;
+  position: relative;
+  top: 1.125rem;
+}
+
+.vue {
+  composes: text-pistachio from global;
+  position: relative;
+  top: -0.75rem;
+}
+
+.java {
+  composes: text-blue from global;
+  position: relative;
+  right: 5rem;
+}
+
+.rails {
+  position: relative;
+  bottom: 0.5rem;
+  left: 4rem;
+}
+
+.ios {
+  composes: text-grey-light from global;
+}
+
+.native {
+  composes: text-blue from global;
+}
+
+.netcore {
+  composes: text-blue from global;
+  position: relative;
+  right: 3rem;
+  bottom: 0.25rem;
+}
+
+.android {
+  composes: text-pistachio from global;
+  position: relative;
+  left: 2rem;
+}
+
+.group3 {
+  margin-right: 1rem;
+}
+
+.angular,
+.react,
+.node,
+.vue,
+.ios {
+  font-size: 1.5rem;
+}
+
+.java,
+.netcore,
+.android {
+  font-size: 1.25rem;
+}
+
+.rails {
+  font-size: 1.25rem;
+}
+
+.native {
+  font-size: 1.875rem;
+}
+
+@media (min-width: $sm) {
+  .angular,
+  .react,
+  .node,
+  .vue,
+  .ios {
+    font-size: 2.25rem;
+  }
+
+  .java,
+  .netcore,
+  .android {
+    font-size: 1.875rem;
+  }
+
+  .rails {
+    font-size: 1.75rem;
+  }
+
+  .native {
+    font-size: 2.5rem;
+  }
+
+  .info {
+    font-size: 3rem;
+  }
+}
+
+@media (min-width: $lg) {
+  .native {
+    font-size: 4rem;
+  }
+
+  .angular,
+  .react,
+  .node,
+  .vue,
+  .ios {
+    font-size: 3rem;
+  }
+
+  .java,
+  .netcore,
+  .android {
+    font-size: 2.75rem;
+  }
+
+  .rails {
+    font-size: 2.5rem;
+  }
+}
+
+@media (min-width: $xl) {
+  .wrapper {
+    justify-content: space-between;
+  }
+
+  .list {
+    max-width: 40rem;
+    margin: 0;
+  }
+}

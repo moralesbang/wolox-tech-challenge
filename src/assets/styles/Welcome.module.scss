@@ -1,0 +1,46 @@
+@import "colors.scss";
+
+.wrapper {
+  composes: flex-center-between from "./shared.scss";
+  composes: section-spacing from "./shared.scss";
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: center;
+}
+
+.info {
+  font-size: 1.875rem;
+}
+
+.image {
+  width: 36rem;
+  max-width: 100%;
+  height: 20rem;
+  object-fit: cover;
+}
+
+.brand {
+  composes: text-pistachio from global;
+  font-weight: bold;
+}
+
+@media (min-width: $sm) {
+  .wrapper {
+    margin-bottom: 5rem;
+  }
+
+  .info {
+    font-size: 3rem;
+  }
+
+  .image {
+    margin-top: 3rem;
+  }
+}
+
+@media (min-width: $xl) {
+  .wrapper {
+    justify-content: space-between;
+  }
+}

@@ -1,28 +1,30 @@
 @import "colors.scss";
-@import "shared.scss";
 
-scroll-container {
-  scroll-behavior: smooth;
+.wrapper {
+  composes: flex-center-between from "./shared.scss";
+  composes: section-spacing from "./shared.scss";
+  margin-top: 2rem;
 }
 
-.navigation {
-  composes: items-centered-between from global;
-  padding: 4rem 5rem;
-}
-
-.navItem {
-  composes: no-underline;
-  composes: font-semibold;
-  composes: text-black from global;
-  padding: 1rem 2rem;
+.item {
+  font-weight: $semibold;
+  color: $black;
+  padding: 0;
   letter-spacing: 0.025em;
-  font-size: 1.125rem;
+  transition: $default_transition;
+  display: block;
+  margin-top: 1rem;
+
+  &:hover {
+    color: $grey-darker;
+  }
 }
 
 .btnLogin {
-  composes: btnFullRounded;
+  composes: btnFullRounded from "./shared.scss";
   color: $blue;
   font-size: 0.875rem;
+  margin-top: 1rem;
 
   &:hover {
     background-color: $blue;
@@ -31,6 +33,78 @@ scroll-container {
   }
 }
 
-.brandLogo {
+.logoWrapper {
+  flex-shrink: 0;
+}
+
+.logo {
   width: 12rem;
+}
+
+.btnMenuWrapper {
+  display: block;
+}
+
+.menuIcon {
+  fill: currentColor;
+  width: 0.75rem;
+  height: 0.75rem;
+}
+
+.btnMenu {
+  display: flex;
+  align-items: center;
+  padding: 0.75rem 1rem;
+  background-color: $white;
+  border: 1px solid $black;
+  border-radius: 5px;
+  cursor: pointer;
+  outline: 0;
+}
+
+.links {
+  width: 100%;
+  display: block;
+  flex-grow: 1;
+}
+
+@media (min-width: $lg) {
+  .btnMenuWrapper {
+    display: none;
+  }
+
+  .links {
+    width: auto;
+    flex-grow: 0;
+  }
+
+  .linksInside {
+    display: flex;
+    align-items: center;
+  }
+
+  .item {
+    margin-top: 0;
+    padding: 0.75rem;
+  }
+
+  .btnLogin {
+    margin: 0;
+    width: 6rem;
+    margin-left: 1rem;
+    font-size: 0.75rem;
+  }
+}
+
+@media (min-width: $xl) {
+  .item {
+    font-size: 1.125rem;
+    padding: 0 2rem;
+  }
+
+  .btnLogin {
+    font-size: 0.875rem;
+    width: 10rem;
+    margin-left: 0;
+  }
 }

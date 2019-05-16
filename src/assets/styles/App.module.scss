@@ -1,165 +1,27 @@
 @import "colors.scss";
-@import "shared.scss";
-
-.nameBrand {
-  composes: text-pistachio from global;
-  font-weight: bold;
-}
-
-.homeSection {
-  composes: items-centered-between from global;
-  composes: wrapper from global;
-  margin-bottom: 5rem;
-}
-
-.welcomeMessage {
-  font-size: 3rem;
-}
-
-.welcomeImage {
-  width: 36rem;
-  height: 21rem;
-  object-fit: cover;
-}
-
-.techsMessage {
-  font-size: 2.25rem;
-}
-
-.techsList {
-  text-align: center;
-  max-width: 40rem;
-  span {
-    display: inline-block;
-    margin: 0 1rem;
-  }
-}
-
-.angular {
-  font-size: 3rem;
-  position: relative;
-  left: -2rem;
-}
-
-.react {
-  composes: text-blue from global;
-  font-size: 3rem;
-}
-
-.node {
-  composes: text-grey-light from global;
-  font-size: 3rem;
-  position: relative;
-  top: 1.125rem;
-}
-
-.vue {
-  composes: text-pistachio from global;
-  font-size: 3rem;
-  position: relative;
-  top: -0.75rem;
-}
-
-.java {
-  composes: text-blue from global;
-  font-size: 2.75rem;
-  position: relative;
-  right: 5rem;
-}
-
-.rails {
-  font-size: 2.5rem;
-  position: relative;
-  bottom: 0.5rem;
-  left: 4rem;
-}
-
-.ios {
-  composes: text-grey-light from global;
-  font-size: 3rem;
-}
-
-.native {
-  composes: text-blue from global;
-  font-size: 4rem;
-}
-
-.netcore {
-  composes: text-blue from global;
-  font-size: 2.75rem;
-  position: relative;
-  right: 3rem;
-  bottom: 0.25rem;
-}
-
-.android {
-  composes: text-pistachio from global;
-  font-size: 2.75rem;
-  position: relative;
-  left: 2rem;
-}
-
-.group3 {
-  margin-right: 1rem;
-}
-
-.topSpacing {
-  margin-top: 1rem;
-}
-
-.companySection {
-  display: flex;
-  align-items: center;
-  height: 25rem;
-}
-
-.twitter {
-  composes: content-centered from global;
-  flex-direction: column;
-  background: no-repeat center/100% url("../images/developer.jpg");
-  background-color: $black;
-  width: 50%;
-  height: 100%;
-}
-
-.workWithUs {
-  composes: content-centered from global;
-  background-color: $grey-lighter;
-  text-align: center;
-  font-size: 3rem;
-  width: 50%;
-  height: 100%;
-}
-
-.btnFollowUS {
-  composes: btnFullRounded;
-  color: $white;
-  margin-top: 1rem;
-
-  &:hover {
-    background-color: $white;
-    color: $blue;
-  }
-}
-
-.twitterIcon {
-  width: 3rem;
-  height: 3rem;
-  margin-right: 1rem;
-}
-
-.followersCount {
-  font-size: 3.5rem;
-  font-weight: 600;
-  margin-bottom: 3rem;
-}
-
-.account {
-  composes: text-white from global;
-  font-size: 1.5rem;
-}
 
 .appWrapper {
   display: flex;
   justify-content: center;
+}
+
+.appInside {
+  composes: text-black from global;
+  max-width: 1920px;
+  width: 100%;
+}
+
+.divider {
+  margin: 2rem;
+  border: 0;
+  height: 0;
+  border-top: 2px solid $grey-lightest;
+  border-bottom: 0.5px solid $grey-lighter;
+}
+
+@media (min-width: $sm) {
+  .divider {
+    margin-top: 2.5rem;
+    margin-bottom: 2.5rem;
+  }
 }
