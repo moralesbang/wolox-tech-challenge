@@ -5,7 +5,7 @@
   flex-wrap: wrap;
   align-items: center;
   justify-content: center;
-  margin-bottom: 4rem;
+  margin-bottom: 2rem;
 }
 
 .item {
@@ -77,5 +77,11 @@
 
   .account {
     font-size: 1.5rem;
+  }
+}
+
+@media (min-width: $lg) {
+  .wrapper {
+    margin-bottom: 4rem;
   }
 }

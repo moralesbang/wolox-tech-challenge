@@ -12,16 +12,9 @@
 }
 
 .divider {
-  margin: 2rem;
+  margin: 1rem 2rem;
   border: 0;
   height: 0;
   border-top: 2px solid $grey-lightest;
   border-bottom: 0.5px solid $grey-lighter;
-}
-
-@media (min-width: $sm) {
-  .divider {
-    margin-top: 2.5rem;
-    margin-bottom: 2.5rem;
-  }
 }
