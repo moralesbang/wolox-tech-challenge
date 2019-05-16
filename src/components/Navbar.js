@@ -1,6 +1,7 @@
 import React, { Component } from "react";
 import styles from "../assets/styles/Navbar.module.scss";
 import logo from "../assets/images/logo-wolox-color.svg";
+import { Link } from "react-router-dom";
 
 class Navbar extends Component {
   constructor(props) {
@@ -53,9 +54,9 @@ class Navbar extends Component {
             <a href="#requeriments" className={styles.item}>
               Requerimientos
             </a>
-            <a href="/login" className={styles.btnLogin}>
+            <Link to="/login" className={styles.btnLogin}>
               Login
-            </a>
+            </Link>
           </div>
         </div>
       </nav>
