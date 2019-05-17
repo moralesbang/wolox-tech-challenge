@@ -1,5 +1,30 @@
 {
-  "sign_in": [],
+  "sign_in": [
+    {
+      "name": "Juan Camilo",
+      "surname": "Morales",
+      "email": "camov1209@gmail.com",
+      "age": "22",
+      "termsChecked": true,
+      "id": 1
+    },
+    {
+      "name": "Pedro",
+      "surname": "Palllares",
+      "email": "pedrito@gmail.com",
+      "age": "34",
+      "termsChecked": true,
+      "id": 2
+    },
+    {
+      "name": "Luisa",
+      "surname": "Vanegas",
+      "email": "luisita@gmail.com",
+      "age": "20",
+      "termsChecked": true,
+      "id": 3
+    }
+  ],
   "products": [
     {
       "id": 1,
