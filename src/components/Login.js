@@ -2,23 +2,20 @@ import React, { Component } from "react";
 import { ageRange } from "../constants";
 import { addUser } from "../api";
 
-const emailRegex = RegExp(
-  /^[a-zA-Z0-9.!#$%&’*+/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:\.[a-zA-Z0-9-]+)*$/
-);
-
 class Login extends Component {
   constructor(props) {
     super(props);
 
+    this.formValid = this.formValid.bind(this);
     this.handleChange = this.handleChange.bind(this);
     this.handleSubmit = this.handleSubmit.bind(this);
     this.handleChangeTermsChecked = this.handleChangeTermsChecked.bind(this);
     this.createAgeOptions = this.createAgeOptions.bind(this);
 
     this.state = {
-      firstName: null,
-      lastName: null,
-      email: null,
+      firstName: "",
+      lastName: "",
+      email: "",
       age: ageRange.init,
       termsChecked: false,
       formErrors: {
@@ -31,57 +28,68 @@ class Login extends Component {
     };
   }
 
+  formValid() {
+    let valid = true;
+    let { formErrors, ...formAttrs } = this.state;
+    const emailRegex = RegExp(
+      /^[a-zA-Z0-9.!#$%&’*+/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:\.[a-zA-Z0-9-]+)*$/
+    );
+
+    for (let [key, value] of Object.entries(formAttrs)) {
+      switch (key) {
+        case "firstName":
+          formErrors.firstName =
+            value.length === 0 ? "Debes poner un nombre" : "";
+          valid = false;
+          break;
+        case "lastName":
+          formErrors.lastName =
+            value.length === 0 ? "Debes poner un apellido" : "";
+          valid = false;
+          break;
+        case "email":
+          formErrors.email = emailRegex.test(value)
+            ? ""
+            : "Dirección de email inválida";
+          break;
+        case "age":
+          let age = parseInt(value);
+          formErrors.age =
+            age > ageRange.end || age < ageRange.init
+              ? "Edad está en un rango no permitido"
+              : "";
+          valid = false;
+          break;
+        case "termsChecked":
+          formErrors.termsChecked = value
+            ? ""
+            : "Debes aceptar los términos y condicoones para continuar";
+          valid = false;
+          break;
+        default:
+          break;
+      }
+    }
+
+    this.setState({ formErrors });
+    return valid;
+  }
+
   handleSubmit(e) {
     e.preventDefault();
-    addUser(this.state);
+    if (this.formValid()) {
+      addUser(this.state);
+    }
   }
 
   handleChange(e) {
     const { name, value } = e.target;
-    let formErrors = this.state.formErrors;
-
-    switch (name) {
-      case "firstName":
-        formErrors.firstName = value.length < 0 ? "Debes poner un nombre" : "";
-        break;
-      case "lastName":
-        formErrors.lastName = value.length < 0 ? "Debes poner un apellido" : "";
-        break;
-      case "email":
-        formErrors.email = emailRegex.test(value)
-          ? ""
-          : "Direccióń de email inválida";
-        break;
-      case "age":
-        let age = parseInt(value);
-        formErrors.age =
-          age > ageRange.end || age < ageRange.init
-            ? "Edad está en un rango no permitido"
-            : "";
-        break;
-      case "termsChecked":
-        break;
-      default:
-        break;
-    }
-
-    this.setState({ formErrors, [name]: value });
+    this.setState({ [name]: value });
   }
 
   handleChangeTermsChecked(e) {
     const { name, checked } = e.target;
-    let error = "";
-
-    if (!checked) {
-      error = checked
-        ? ""
-        : "Debes aceptar los términos y condiciones para continuar";
-    }
-
-    this.setState({
-      formErrors: { termsChecked: error },
-      [name]: checked
-    });
+    this.setState({ [name]: checked });
   }
 
   createAgeOptions() {
