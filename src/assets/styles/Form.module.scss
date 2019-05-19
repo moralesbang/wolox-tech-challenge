@@ -1,0 +1,108 @@
+@import "colors.scss";
+
+.wrapper {
+  max-width: 30rem;
+  margin: 3rem auto;
+}
+
+.title {
+  margin-bottom: 1.5rem;
+  font-size: 1.5rem;
+  color: $grey-darkest;
+}
+
+.field {
+  margin-bottom: 1.5rem;
+}
+
+.input {
+  display: block;
+  font-size: 1rem;
+  font-family: inherit;
+  color: $grey-darker;
+  background: $grey-lighter;
+  border: 1px solid $grey-lighter;
+  border-radius: 5px;
+  padding: 0.75rem 1rem;
+  line-height: 1.25;
+  appearance: none;
+  -webkit-appearance: none;
+  max-width: 12rem;
+
+  &:focus {
+    outline: none;
+    background-color: $white;
+    border-color: $grey;
+  }
+}
+
+.label {
+  display: block;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  color: $grey-darker;
+  font-size: 0.75rem;
+  font-weight: 700;
+  margin-bottom: 0.5rem;
+}
+
+.select {
+  appearance: none;
+  -webkit-appearance: none;
+  display: block;
+  padding: 0.75rem 1rem;
+  background-color: $grey-lighter;
+  border: 1px solid $grey-lighter;
+  border-radius: 5px;
+  color: $grey-darker;
+  letter-spacing: 0.05em;
+  cursor: pointer;
+
+  &:focus {
+    outline: none;
+    background-color: $white;
+    border-color: $grey;
+  }
+}
+
+.checkbox {
+  margin: 0;
+  cursor: pointer;
+}
+
+.checkboxDesc {
+  margin-left: 0.5rem;
+  color: $grey-darker;
+}
+
+.submit {
+  font-family: inherit;
+  font-weight: 700;
+  font-size: 1rem;
+  padding: 0.5rem 1rem;
+  border-radius: 5px;
+  cursor: pointer;
+  display: block;
+  background-color: $blue;
+  color: $white;
+  border: none;
+  transition: $default-transition;
+
+  &:focus {
+    outline: none;
+  }
+
+  &:hover {
+    background-color: $blue-dark;
+  }
+}
+
+.fieldSection {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+
+  div:not(:last-child) {
+    margin-right: 1rem;
+  }
+}

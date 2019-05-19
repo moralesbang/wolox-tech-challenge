@@ -1,13 +1,15 @@
 import React, { Component } from "react";
-import { Redirect } from "react-router-dom";
 import { ageRange } from "../constants";
 import { addUser } from "../api";
+import stylesForm from "../assets/styles/Form.module.scss";
+import ErrorList from "./Alert";
 
 class Login extends Component {
   constructor(props) {
     super(props);
 
     this.formValid = this.formValid.bind(this);
+    this.getErrorMessage = this.getErrorMessage.bind(this);
     this.handleChange = this.handleChange.bind(this);
     this.handleSubmit = this.handleSubmit.bind(this);
     this.createAgeOptions = this.createAgeOptions.bind(this);
@@ -38,14 +40,14 @@ class Login extends Component {
     );
 
     if (user.firstName.length === 0) {
-      formErrors.firstName = "Debes poner un nombre";
-    } else if (user.lastName === 0) {
-      formErrors.lastName = "Debes poner un apellido";
+      formErrors.firstName = "Debes poner tu nombre";
+    } else if (user.lastName.length === 0) {
+      formErrors.lastName = "Debes poner tu apellido";
     } else if (!emailRegex.test(user.email)) {
-      formErrors.email = "Dirección de email inválida";
+      formErrors.email = "Tu dirección de email es inválida";
     } else if (!user.termsChecked) {
       formErrors.termsChecked =
-        "Debes aceptar los términos y condicoones para continuar";
+        "Debes aceptar los términos y condiciones para continuar";
     } else {
       valid = true;
     }
@@ -54,11 +56,11 @@ class Login extends Component {
     return valid;
   }
 
-  handleSubmit(e) {
+  async handleSubmit(e) {
     e.preventDefault();
-    console.log("submitting");
     if (this.formValid()) {
-      addUser(this.state.user);
+      await addUser(this.state.user);
+      this.props.history.push("/products");
     }
   }
 
@@ -85,65 +87,95 @@ class Login extends Component {
     return ageOptions;
   }
 
+  getErrorMessage() {
+    let messages = Object.values(this.state.formErrors);
+    return messages.filter(message => message.length > 0)[0];
+  }
+
   render() {
     localStorage.getItem("userData") && this.props.history.push("/products");
+    const errorMessage = this.getErrorMessage();
 
     return (
-      <div>
-        <h3>Log In</h3>
+      <div className={stylesForm.wrapper}>
+        <h3 className={stylesForm.title}>Log In</h3>
+        {errorMessage && <ErrorList message={errorMessage} />}
         <form onSubmit={this.handleSubmit}>
-          <div>
-            <label htmlFor="name">Nombre</label>
-            <input
-              type="text"
-              id="firsName"
-              name="firstName"
-              placeholder="Jane"
-              onChange={this.handleChange}
-            />
+          <div className={stylesForm.fieldSection}>
+            <div className={stylesForm.field}>
+              <label htmlFor="name" className={stylesForm.label}>
+                Nombre
+              </label>
+              <input
+                type="text"
+                id="firsName"
+                name="firstName"
+                className={stylesForm.input}
+                placeholder="Jane"
+                onChange={this.handleChange}
+              />
+            </div>
+
+            <div className={stylesForm.field}>
+              <label htmlFor="lastName" className={stylesForm.label}>
+                Apellido
+              </label>
+              <input
+                type="text"
+                name="lastName"
+                id="lastName"
+                className={stylesForm.input}
+                placeholder="Doe"
+                onChange={this.handleChange}
+              />
+            </div>
           </div>
 
-          <div>
-            <label htmlFor="lastName">Apellido</label>
-            <input
-              type="text"
-              name="lastName"
-              id="lastName"
-              placeholder="Doe"
-              onChange={this.handleChange}
-            />
+          <div className={stylesForm.fieldSection}>
+            <div className={stylesForm.field}>
+              <label htmlFor="email" className={stylesForm.label}>
+                E-mail
+              </label>
+              <input
+                type="email"
+                name="email"
+                id="email"
+                className={stylesForm.input}
+                placeholder="janedoe@example.com"
+                onChange={this.handleChange}
+              />
+            </div>
+
+            <div className={stylesForm.field}>
+              <label htmlFor="age" className={stylesForm.label}>
+                Edad
+              </label>
+              <select
+                name="age"
+                id="age"
+                className={stylesForm.select}
+                onChange={this.handleChange}
+              >
+                {this.createAgeOptions()}
+              </select>
+            </div>
           </div>
 
-          <div>
-            <label htmlFor="email">E-mail</label>
-            <input
-              type="email"
-              name="email"
-              id="email"
-              placeholder="janedoe@example.com"
-              onChange={this.handleChange}
-            />
-          </div>
-
-          <div>
-            <label htmlFor="age">Edad</label>
-            <select name="age" id="age" onChange={this.handleChange}>
-              {this.createAgeOptions()}
-            </select>
-          </div>
-
-          <div>
+          <div className={stylesForm.field}>
             <input
               type="checkbox"
               name="termsChecked"
+              className={stylesForm.checkbox}
               id="termsChecked"
               onChange={this.handleChange}
             />
-            Acepto los terminos
+            <span className={stylesForm.checkboxDesc}>
+              Acepto los términos y condiciones
+            </span>
           </div>
 
-          <button type="submit" className="">
-            Log in
+          <button type="submit" className={stylesForm.submit}>
+            Log In
           </button>
         </form>
       </div>

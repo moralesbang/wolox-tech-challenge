@@ -1,0 +1,31 @@
+@import "colors.scss";
+
+.warning {
+  display: flex;
+  align-items: flex-start;
+  background-color: $yellow-lightest;
+  border-left: 5px solid $yellow-dark;
+  font-size: 0.875rem;
+  color: $yellow-darker;
+  padding: 1rem;
+  margin: 1.5rem 0;
+}
+
+.icon {
+  width: 1rem;
+  height: 1rem;
+
+  g {
+    fill: $yellow-darker;
+  }
+}
+
+.title {
+  display: block;
+  font-weight: 600;
+  margin-bottom: 0.5rem;
+}
+
+.info {
+  margin-left: 1rem;
+}
