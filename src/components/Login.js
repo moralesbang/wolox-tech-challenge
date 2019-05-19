@@ -1,4 +1,5 @@
 import React, { Component } from "react";
+import { Redirect } from "react-router-dom";
 import { ageRange } from "../constants";
 import { addUser } from "../api";
 
@@ -9,15 +10,16 @@ class Login extends Component {
     this.formValid = this.formValid.bind(this);
     this.handleChange = this.handleChange.bind(this);
     this.handleSubmit = this.handleSubmit.bind(this);
-    this.handleChangeTermsChecked = this.handleChangeTermsChecked.bind(this);
     this.createAgeOptions = this.createAgeOptions.bind(this);
 
     this.state = {
-      firstName: "",
-      lastName: "",
-      email: "",
-      age: ageRange.init,
-      termsChecked: false,
+      user: {
+        firstName: "",
+        lastName: "",
+        email: "",
+        age: ageRange.init,
+        termsChecked: false
+      },
       formErrors: {
         firstName: "",
         lastName: "",
@@ -29,46 +31,23 @@ class Login extends Component {
   }
 
   formValid() {
-    let valid = true;
-    let { formErrors, ...formAttrs } = this.state;
+    let valid = false;
+    let { formErrors, user } = this.state;
     const emailRegex = RegExp(
       /^[a-zA-Z0-9.!#$%&’*+/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:\.[a-zA-Z0-9-]+)*$/
     );
 
-    for (let [key, value] of Object.entries(formAttrs)) {
-      switch (key) {
-        case "firstName":
-          formErrors.firstName =
-            value.length === 0 ? "Debes poner un nombre" : "";
-          valid = false;
-          break;
-        case "lastName":
-          formErrors.lastName =
-            value.length === 0 ? "Debes poner un apellido" : "";
-          valid = false;
-          break;
-        case "email":
-          formErrors.email = emailRegex.test(value)
-            ? ""
-            : "Dirección de email inválida";
-          break;
-        case "age":
-          let age = parseInt(value);
-          formErrors.age =
-            age > ageRange.end || age < ageRange.init
-              ? "Edad está en un rango no permitido"
-              : "";
-          valid = false;
-          break;
-        case "termsChecked":
-          formErrors.termsChecked = value
-            ? ""
-            : "Debes aceptar los términos y condicoones para continuar";
-          valid = false;
-          break;
-        default:
-          break;
-      }
+    if (user.firstName.length === 0) {
+      formErrors.firstName = "Debes poner un nombre";
+    } else if (user.lastName === 0) {
+      formErrors.lastName = "Debes poner un apellido";
+    } else if (!emailRegex.test(user.email)) {
+      formErrors.email = "Dirección de email inválida";
+    } else if (!user.termsChecked) {
+      formErrors.termsChecked =
+        "Debes aceptar los términos y condicoones para continuar";
+    } else {
+      valid = true;
     }
 
     this.setState({ formErrors });
@@ -77,19 +56,19 @@ class Login extends Component {
 
   handleSubmit(e) {
     e.preventDefault();
+    console.log("submitting");
     if (this.formValid()) {
-      addUser(this.state);
+      addUser(this.state.user);
     }
   }
 
   handleChange(e) {
-    const { name, value } = e.target;
-    this.setState({ [name]: value });
-  }
+    const { name } = e.target;
+    const value = name === "termsChecked" ? e.target.checked : e.target.value;
+    const { user } = this.state;
 
-  handleChangeTermsChecked(e) {
-    const { name, checked } = e.target;
-    this.setState({ [name]: checked });
+    user[name] = value;
+    this.setState({ user });
   }
 
   createAgeOptions() {
@@ -107,17 +86,16 @@ class Login extends Component {
   }
 
   render() {
+    localStorage.getItem("userData") && this.props.history.push("/products");
+
     return (
       <div>
         <h3>Log In</h3>
         <form onSubmit={this.handleSubmit}>
-          <div class="mb-6">
-            <label htmlFor="name" class="label">
-              Nombre
-            </label>
+          <div>
+            <label htmlFor="name">Nombre</label>
             <input
               type="text"
-              class="input"
               id="firsName"
               name="firstName"
               placeholder="Jane"
@@ -125,13 +103,10 @@ class Login extends Component {
             />
           </div>
 
-          <div class="mb-6">
-            <label htmlFor="lastName" class="label">
-              Apellido
-            </label>
+          <div>
+            <label htmlFor="lastName">Apellido</label>
             <input
               type="text"
-              class="input"
               name="lastName"
               id="lastName"
               placeholder="Doe"
@@ -139,13 +114,10 @@ class Login extends Component {
             />
           </div>
 
-          <div class="mb-6">
-            <label htmlFor="email" class="label">
-              E-mail
-            </label>
+          <div>
+            <label htmlFor="email">E-mail</label>
             <input
               type="email"
-              class="input"
               name="email"
               id="email"
               placeholder="janedoe@example.com"
@@ -153,21 +125,19 @@ class Login extends Component {
             />
           </div>
 
-          <div class="mb-6">
-            <label htmlFor="age" class="label">
-              Edad
-            </label>
+          <div>
+            <label htmlFor="age">Edad</label>
             <select name="age" id="age" onChange={this.handleChange}>
               {this.createAgeOptions()}
             </select>
           </div>
 
-          <div class="mb-6">
+          <div>
             <input
               type="checkbox"
               name="termsChecked"
               id="termsChecked"
-              onChange={this.handleChangeTermsChecked}
+              onChange={this.handleChange}
             />
             Acepto los terminos
           </div>
