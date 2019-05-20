@@ -1,4 +1,4 @@
-@import "./colors.scss";
+@import "constants.scss";
 
 .wrapper {
   composes: column-centered from global;

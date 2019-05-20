@@ -1,4 +1,4 @@
-import React, { Component } from "react";
+import React from "react";
 import { connect } from "react-redux";
 import { setProductQuery } from "../actions";
 import styles from "../assets/styles/Searchbox.module.scss";
