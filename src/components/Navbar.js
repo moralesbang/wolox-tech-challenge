@@ -21,9 +21,12 @@ class Navbar extends Component {
   }
 
   visibilityLinks() {
-    return this.state.menuExpanded || window.innerWidth >= 1024
-      ? ""
-      : " hidden";
+    console.log(window.innerWidth < 1024);
+    if (this.state.menuExpanded || window.innerWidth >= 1024) {
+      return "";
+    } else {
+      return " hidden";
+    }
   }
 
   render() {
@@ -58,9 +61,11 @@ class Navbar extends Component {
             <a href="#requeriments" className={styles.item}>
               Requerimientos
             </a>
-            <Link to="/login" className={styles.btnLogin}>
-              Login
-            </Link>
+            {!localStorage.getItem("userData") && (
+              <Link to="/login" className={styles.btnLogin}>
+                Login
+              </Link>
+            )}
           </div>
         </div>
       </nav>
