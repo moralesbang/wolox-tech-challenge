@@ -1,13 +1,15 @@
 import React from "react";
+import Product from "./Product";
+import styles from "../assets/styles/ProductList.module.scss";
 
 function ProductList({ products }) {
   return (
     <div>
-      <ul>
+      <div className={styles.wrapper}>
         {products.map(product => (
-          <li>{product.name}</li>
+          <Product key={product.id} {...product} />
         ))}
-      </ul>
+      </div>
     </div>
   );
 }

@@ -5,7 +5,7 @@ import PrivateRoute from "../helpers/PrivateRoute";
 import App from "../App";
 import Navbar from "../components/Navbar";
 import Login from "./Login";
-import FilteredProductList from "../components/FilteredProductList";
+import ProductPage from "../components/ProductPage";
 import styles from "../assets/styles/App.module.scss";
 
 function Root({ store }) {
@@ -17,11 +17,7 @@ function Root({ store }) {
             <Navbar />
             <Route exact path="/" component={App} />
             <Route exact path="/login" component={Login} />
-            <PrivateRoute
-              exact
-              path="/products"
-              component={FilteredProductList}
-            />
+            <PrivateRoute exact path="/products" component={ProductPage} />
           </div>
         </div>
       </Router>

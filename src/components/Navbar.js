@@ -7,19 +7,23 @@ class Navbar extends Component {
   constructor(props) {
     super(props);
     this.handleClick = this.handleClick.bind(this);
-    this.state = { menuExpanded: false };
+    this.state = { menuExpanded: true };
   }
 
-  componentWillMount() {}
+  componentWillMount() {
+    window.addEventListener("resize", () => {
+      this.setState({ menuExpanded: window.innerWidth >= 1024 });
+    });
+  }
 
   handleClick() {
     this.setState({ menuExpanded: !this.state.menuExpanded });
   }
 
-  linksClass() {
-    let extra =
-      this.state.menuExpanded || window.innerWidth >= 1024 ? "" : " hidden";
-    return styles.links + extra;
+  visibilityLinks() {
+    return this.state.menuExpanded || window.innerWidth >= 1024
+      ? ""
+      : " hidden";
   }
 
   render() {
@@ -40,7 +44,7 @@ class Navbar extends Component {
             </svg>
           </button>
         </div>
-        <div className={this.linksClass()}>
+        <div className={styles.links + this.visibilityLinks()}>
           <div className={styles.linksInside}>
             <a href="#welcome" className={styles.item}>
               Inicio

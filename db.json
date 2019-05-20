@@ -14,25 +14,33 @@
       "id": 1,
       "sku": 512534124,
       "name": "Optical mouse",
-      "price": 512
+      "price": 512,
+      "imageURL": "https://hniesfp.imgix.net/8/images/detailed/94/01-02010100R3G1_6.jpg?fit=fill&bg=0FFF&w=1500&h=1000&auto=format,compress",
+      "description": "Lorem ipsum dolor amet tacos live-edge enamel pin, vice bespoke flannel gluten-free bicycle rights PBR&B four dollar toast pop-up ennui chillwave."
     },
     {
       "id": 2,
       "sku": 35252355,
       "name": "Keyboard",
-      "price": 632
+      "price": 632,
+      "imageURL": "https://cdn.mos.cms.futurecdn.net/7DceKdaRm8mrFG6xFmxNhQ.jpg",
+      "description": "Paleo shabby chic pok pok, meditation tousled chartreuse vaporware."
     },
     {
       "id": 3,
       "sku": 754745726,
       "name": "Headphones",
-      "price": 7334
+      "price": 7334,
+      "imageURL": "https://cdn.mos.cms.futurecdn.net/hCEzLKJ6A4rcWBmkesynGc.jpg",
+      "description": "Godard pug iceland farm-to-table neutra, mustache gluten-free tacos tattooed artisan master cleanse hoodie XOXO skateboard."
     },
     {
       "id": 4,
       "sku": 6327237255,
       "name": "Microphone",
-      "price": 543
+      "price": 543,
+      "imageURL": "https://d4kkpd69xt9l7.cloudfront.net/sys-master/root/hbc/ha9/8903727349790/razer-seiren-x-gallery-04.jpg",
+      "description": "Four loko bespoke bushwick chillwave synth biodiesel. Godard banjo microdosing food truck."
     }
   ]
 }
