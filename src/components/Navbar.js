@@ -7,7 +7,7 @@ class Navbar extends Component {
   constructor(props) {
     super(props);
     this.handleClick = this.handleClick.bind(this);
-    this.state = { menuExpanded: true };
+    this.state = { menuExpanded: window.innerWidth >= 1024 };
   }
 
   componentWillMount() {
@@ -21,8 +21,7 @@ class Navbar extends Component {
   }
 
   visibilityLinks() {
-    console.log(window.innerWidth < 1024);
-    if (this.state.menuExpanded || window.innerWidth >= 1024) {
+    if (this.state.menuExpanded) {
       return "";
     } else {
       return " hidden";

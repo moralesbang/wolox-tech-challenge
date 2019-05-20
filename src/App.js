@@ -6,11 +6,13 @@ import Welcome from "./components/Welcome";
 import Technologies from "./components/Technologies";
 import Mission from "./components/Mission";
 import Thanks from "./components/Thanks";
+import Navbar from "./components/Navbar";
 
 class App extends Component {
   render() {
     return (
       <React.Fragment>
+        <Navbar />
         <scroll-container>
           <Welcome />
           <Technologies />

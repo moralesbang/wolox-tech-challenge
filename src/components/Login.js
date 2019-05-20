@@ -101,64 +101,63 @@ class Login extends Component {
         <h3 className={stylesForm.title}>Log In</h3>
         {errorMessage && <ErrorList message={errorMessage} />}
         <form onSubmit={this.handleSubmit}>
-          <div className={stylesForm.fieldSection}>
-            <div className={stylesForm.field}>
-              <label htmlFor="name" className={stylesForm.label}>
-                Nombre
-              </label>
-              <input
-                type="text"
-                id="firsName"
-                name="firstName"
-                className={stylesForm.input}
-                placeholder="Jane"
-                onChange={this.handleChange}
-              />
-            </div>
-
-            <div className={stylesForm.field}>
-              <label htmlFor="lastName" className={stylesForm.label}>
-                Apellido
-              </label>
-              <input
-                type="text"
-                name="lastName"
-                id="lastName"
-                className={stylesForm.input}
-                placeholder="Doe"
-                onChange={this.handleChange}
-              />
-            </div>
+          <div className={stylesForm.field}>
+            <label htmlFor="name" className={stylesForm.label}>
+              Nombre
+            </label>
+            <input
+              type="text"
+              id="firsName"
+              name="firstName"
+              className={stylesForm.input}
+              placeholder="Jane"
+              onChange={this.handleChange}
+              autocomplete="off"
+            />
           </div>
 
-          <div className={stylesForm.fieldSection}>
-            <div className={stylesForm.field}>
-              <label htmlFor="email" className={stylesForm.label}>
-                E-mail
-              </label>
-              <input
-                type="email"
-                name="email"
-                id="email"
-                className={stylesForm.input}
-                placeholder="janedoe@example.com"
-                onChange={this.handleChange}
-              />
-            </div>
+          <div className={stylesForm.field}>
+            <label htmlFor="lastName" className={stylesForm.label}>
+              Apellido
+            </label>
+            <input
+              type="text"
+              name="lastName"
+              id="lastName"
+              className={stylesForm.input}
+              placeholder="Doe"
+              onChange={this.handleChange}
+              autocomplete="off"
+            />
+          </div>
 
-            <div className={stylesForm.field}>
-              <label htmlFor="age" className={stylesForm.label}>
-                Edad
-              </label>
-              <select
-                name="age"
-                id="age"
-                className={stylesForm.select}
-                onChange={this.handleChange}
-              >
-                {this.createAgeOptions()}
-              </select>
-            </div>
+          <div className={stylesForm.field}>
+            <label htmlFor="email" className={stylesForm.label}>
+              E-mail
+            </label>
+            <input
+              type="email"
+              name="email"
+              id="email"
+              className={stylesForm.input}
+              placeholder="janedoe@example.com"
+              onChange={this.handleChange}
+              autocomplete="off"
+            />
+          </div>
+
+          <div className={stylesForm.field}>
+            <label htmlFor="age" className={stylesForm.label}>
+              Edad
+            </label>
+            <select
+              name="age"
+              id="age"
+              className={stylesForm.select}
+              onChange={this.handleChange}
+            >
+              {this.createAgeOptions()}
+            </select>
           </div>
 
           <div className={stylesForm.field}>
