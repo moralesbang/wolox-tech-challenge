@@ -6,13 +6,14 @@ import { Link } from "react-router-dom";
 class Navbar extends Component {
   constructor(props) {
     super(props);
+    this.isLargeScreen = window.innerWidth >= 1024;
     this.handleClick = this.handleClick.bind(this);
-    this.state = { menuExpanded: window.innerWidth >= 1024 };
+    this.state = { menuExpanded: this.isLargeScreen };
   }
 
   componentWillMount() {
     window.addEventListener("resize", () => {
-      this.setState({ menuExpanded: window.innerWidth >= 1024 });
+      this.setState({ menuExpanded: this.isLargeScreen });
     });
   }
 
@@ -20,12 +21,8 @@ class Navbar extends Component {
     this.setState({ menuExpanded: !this.state.menuExpanded });
   }
 
-  visibilityLinks() {
-    if (this.state.menuExpanded) {
-      return "";
-    } else {
-      return " hidden";
-    }
+  get visibilityItemList() {
+    return this.state.menuExpanded ? "" : " hidden";
   }
 
   render() {
@@ -46,7 +43,7 @@ class Navbar extends Component {
             </svg>
           </button>
         </div>
-        <div className={styles.links + this.visibilityLinks()}>
+        <div className={styles.links + this.visibilityItemList}>
           <div className={styles.linksInside}>
             <a href="#welcome" className={styles.item}>
               Inicio
@@ -60,6 +57,7 @@ class Navbar extends Component {
             <a href="#requeriments" className={styles.item}>
               Requerimientos
             </a>
+
             {!localStorage.getItem("userData") && (
               <Link to="/login" className={styles.btnLogin}>
                 Login
