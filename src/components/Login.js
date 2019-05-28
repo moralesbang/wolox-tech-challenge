@@ -3,6 +3,7 @@ import { ageRange } from "../constants";
 import { addUser } from "../api";
 import stylesForm from "../assets/styles/Form.module.scss";
 import ErrorList from "./Alert";
+import FormValidator from "../util/FormValidator";
 
 const createAgeOptions = () => {
   let ageOptions = [];
@@ -23,9 +24,6 @@ class Login extends Component {
     super(props);
 
     this.ageOptions = createAgeOptions();
-
-    this.formValid = this.formValid.bind(this);
-    this.getErrorMessage = this.getErrorMessage.bind(this);
     this.handleChange = this.handleChange.bind(this);
     this.handleSubmit = this.handleSubmit.bind(this);
 
@@ -37,43 +35,17 @@ class Login extends Component {
         age: ageRange.init,
         termsChecked: false
       },
-      formErrors: {
-        firstName: "",
-        lastName: "",
-        email: "",
-        age: "",
-        termsChecked: ""
-      }
+      formError: null
     };
-  }
-
-  formValid() {
-    let valid = false;
-    let { formErrors, user } = this.state;
-    const emailRegex = RegExp(
-      /^[a-zA-Z0-9.!#$%&’*+/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:\.[a-zA-Z0-9-]+)*$/
-    );
-
-    if (user.firstName.length === 0) {
-      formErrors.firstName = "Debes poner tu nombre";
-    } else if (user.lastName.length === 0) {
-      formErrors.lastName = "Debes poner tu apellido";
-    } else if (!emailRegex.test(user.email)) {
-      formErrors.email = "Tu dirección de email es inválida";
-    } else if (!user.termsChecked) {
-      formErrors.termsChecked =
-        "Debes aceptar los términos y condiciones para continuar";
-    } else {
-      valid = true;
-    }
-
-    this.setState({ formErrors });
-    return valid;
   }
 
   async handleSubmit(e) {
     e.preventDefault();
-    if (this.formValid()) {
+    const error = new FormValidator(this.state.user).validate();
+
+    if (error) {
+      this.setState({ formError: error });
+    } else {
       await addUser(this.state.user);
       this.props.history.push("/products");
     }
@@ -88,19 +60,13 @@ class Login extends Component {
     this.setState({ user });
   }
 
-  getErrorMessage() {
-    let messages = Object.values(this.state.formErrors);
-    return messages.filter(message => message.length > 0)[0];
-  }
-
   render() {
     localStorage.getItem("userData") && this.props.history.push("/products");
-    const errorMessage = this.getErrorMessage();
 
     return (
       <div className={stylesForm.wrapper}>
         <h3 className={stylesForm.title}>Log In</h3>
-        {errorMessage && <ErrorList message={errorMessage} />}
+        {this.state.formError && <ErrorList message={this.state.formError} />}
         <form onSubmit={this.handleSubmit}>
           <div className={stylesForm.field}>
             <label htmlFor="name" className={stylesForm.label}>
