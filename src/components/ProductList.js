@@ -1,4 +1,5 @@
 import React from "react";
+import PropTypes from "prop-types";
 import Product from "./Product";
 import styles from "../assets/styles/ProductList.module.scss";
 
@@ -13,5 +14,18 @@ function ProductList({ products }) {
     </div>
   );
 }
+
+ProductList.propTypes = {
+  products: PropTypes.arrayOf(
+    PropTypes.shape({
+      id: PropTypes.number,
+      sku: PropTypes.number,
+      name: PropTypes.string,
+      price: PropTypes.number,
+      imageURL: PropTypes.string,
+      description: PropTypes.string
+    })
+  )
+};
 
 export default ProductList;

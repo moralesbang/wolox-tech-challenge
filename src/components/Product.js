@@ -1,4 +1,5 @@
 import React from "react";
+import PropTypes from "prop-types";
 import styles from "../assets/styles/Product.module.scss";
 
 function Product(props) {
@@ -22,5 +23,14 @@ function Product(props) {
     </div>
   );
 }
+
+Product.propTypes = {
+  id: PropTypes.number,
+  sku: PropTypes.number,
+  name: PropTypes.string,
+  price: PropTypes.number,
+  imageURL: PropTypes.string,
+  description: PropTypes.string
+};
 
 export default Product;

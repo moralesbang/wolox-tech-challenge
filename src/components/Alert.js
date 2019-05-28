@@ -1,4 +1,5 @@
 import React from "react";
+import PropTypes from "prop-types";
 import styles from "../assets/styles/Alert.module.scss";
 
 function Alert({ message }) {
@@ -25,5 +26,9 @@ function Alert({ message }) {
     </div>
   );
 }
+
+Alert.propTypes = {
+  message: PropTypes.string
+};
 
 export default Alert;

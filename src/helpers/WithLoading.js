@@ -1,4 +1,5 @@
 import React from "react";
+import PropTypes from "prop-types";
 import styles from "../assets/styles/WithLoading.module.scss";
 
 function WithLoading(Component) {
@@ -11,5 +12,9 @@ function WithLoading(Component) {
     );
   };
 }
+
+WithLoading.propTypes = {
+  isFetching: PropTypes.bool
+};
 
 export default WithLoading;

@@ -17,7 +17,7 @@ class FilteredProductList extends Component {
 
   render() {
     const { isFetching, products } = this.props;
-    const ProductListWithLoading = WithLoading(ProductList); // Use HOC for loadgin message
+    const ProductListWithLoading = WithLoading(ProductList); // Use HOC for loading message
 
     return (
       <ProductListWithLoading isFetching={isFetching} products={products} />
