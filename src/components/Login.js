@@ -4,15 +4,30 @@ import { addUser } from "../api";
 import stylesForm from "../assets/styles/Form.module.scss";
 import ErrorList from "./Alert";
 
+const createAgeOptions = () => {
+  let ageOptions = [];
+
+  for (let i = ageRange.init; i <= ageRange.end; i++) {
+    ageOptions.push(
+      <option key={i} value={i}>
+        {i}
+      </option>
+    );
+  }
+
+  return ageOptions;
+};
+
 class Login extends Component {
   constructor(props) {
     super(props);
+
+    this.ageOptions = createAgeOptions();
 
     this.formValid = this.formValid.bind(this);
     this.getErrorMessage = this.getErrorMessage.bind(this);
     this.handleChange = this.handleChange.bind(this);
     this.handleSubmit = this.handleSubmit.bind(this);
-    this.createAgeOptions = this.createAgeOptions.bind(this);
 
     this.state = {
       user: {
@@ -73,20 +88,6 @@ class Login extends Component {
     this.setState({ user });
   }
 
-  createAgeOptions() {
-    let ageOptions = [];
-
-    for (let i = ageRange.init; i <= ageRange.end; i++) {
-      ageOptions.push(
-        <option key={i} value={i}>
-          {i}
-        </option>
-      );
-    }
-
-    return ageOptions;
-  }
-
   getErrorMessage() {
     let messages = Object.values(this.state.formErrors);
     return messages.filter(message => message.length > 0)[0];
@@ -112,7 +113,7 @@ class Login extends Component {
               className={stylesForm.input}
               placeholder="Jane"
               onChange={this.handleChange}
-              autocomplete="off"
+              autoComplete="off"
             />
           </div>
 
@@ -127,7 +128,7 @@ class Login extends Component {
               className={stylesForm.input}
               placeholder="Doe"
               onChange={this.handleChange}
-              autocomplete="off"
+              autoComplete="off"
             />
           </div>
 
@@ -142,7 +143,7 @@ class Login extends Component {
               className={stylesForm.input}
               placeholder="janedoe@example.com"
               onChange={this.handleChange}
-              autocomplete="off"
+              autoComplete="off"
             />
           </div>
 
@@ -156,7 +157,7 @@ class Login extends Component {
               className={stylesForm.select}
               onChange={this.handleChange}
             >
-              {this.createAgeOptions()}
+              {this.ageOptions}
             </select>
           </div>
 
