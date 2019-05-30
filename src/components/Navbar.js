@@ -31,6 +31,7 @@ class Navbar extends Component {
         <div className={styles.logoWrapper}>
           <img src={logo} alt="Wolox's logo" className={styles.logo} />
         </div>
+
         <div className={styles.btnMenuWrapper}>
           <button className={styles.btnMenu} onClick={this.handleClick}>
             <svg

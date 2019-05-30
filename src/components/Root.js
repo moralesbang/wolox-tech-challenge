@@ -6,20 +6,23 @@ import App from "../App";
 import Login from "./Login";
 import ProductPage from "../components/ProductPage";
 import styles from "../assets/styles/App.module.scss";
+import ErrorBoundary from "../helpers/ErrorBoundary";
 
 function Root({ store }) {
   return (
-    <Provider store={store}>
-      <Router>
-        <div className={styles.appWrapper}>
-          <div className={styles.appInside}>
-            <Route exact path="/" component={App} />
-            <Route exact path="/login" component={Login} />
-            <PrivateRoute exact path="/products" component={ProductPage} />
+    <ErrorBoundary>
+      <Provider store={store}>
+        <Router>
+          <div className={styles.appWrapper}>
+            <div className={styles.appInside}>
+              <Route exact path="/" component={App} />
+              <Route exact path="/login" component={Login} />
+              <PrivateRoute exact path="/products" component={ProductPage} />
+            </div>
           </div>
-        </div>
-      </Router>
-    </Provider>
+        </Router>
+      </Provider>
+    </ErrorBoundary>
   );
 }
 
