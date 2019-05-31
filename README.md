@@ -1,5 +1,7 @@
 # interview-react
 
+[![Known Vulnerabilities](https://snyk.io/test/github/{moralesbang}/{wolox-tech-challenge}/badge.svg)](https://snyk.io/test/github/{moralesbang}/{wolox-tech-challenge})
+
 ### Things that I would like you should know
 
 1. I used images and icons from internet.
