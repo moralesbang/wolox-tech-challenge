@@ -11,7 +11,7 @@ class Navbar extends Component {
     this.state = { menuExpanded: this.isLargeScreen };
   }
 
-  componentWillMount() {
+  componentDidMount() {
     window.addEventListener("resize", () => {
       this.setState({ menuExpanded: this.isLargeScreen });
     });
